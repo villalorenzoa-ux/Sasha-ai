@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sasha AI</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#212121;color:white;font-family:Arial,sans-serif}
+header{height:60px;padding:18px;border-bottom:1px solid #383838;font-weight:bold}
+main{height:calc(100dvh - 130px);display:flex;align-items:center;justify-content:center;flex-direction:column;padding:20px}
+h1{font-size:28px}
+#messages{width:100%;max-width:650px;overflow:auto;flex:1}
+.msg{padding:14px;margin:10px 0;background:#303030;border-radius:16px;white-space:pre-wrap}
+.msg img{max-width:100%;border-radius:12px;margin-top:10px}
+footer{position:fixed;bottom:0;width:100%;padding:12px;background:#212121}
+form{max-width:650px;margin:auto;background:#303030;border-radius:25px;padding:8px;display:flex;gap:8px}
+input{flex:1;min-width:0;background:transparent;border:0;color:white;padding:12px;outline:none}
+button{background:white;color:black;border:0;border-radius:50%;width:42px;height:42px;font-size:20px}
+</style>
+</head>
+<body>
+<header>SASHA AI</header>
+<main>
+<h1>¿Qué imagen creamos?</h1>
+<div id="messages"></div>
+</main>
+<footer>
+<form id="chat">
+<input id="prompt" placeholder="Describe la imagen que imaginas..." autocomplete="off">
+<button type="submit">↑</button>
+</form>
+</footer>
+<script>
+document.getElementById('chat').addEventListener('submit',e=>{
+e.preventDefault();
+const input=document.getElementById('prompt');
+const value=input.value.trim();
+if(!value)return;
+const messages=document.getElementById('messages');
+const msg=document.createElement('div');
+msg.className='msg';
+msg.textContent=value;
+messages.appendChild(msg);
+input.value='';
+document.querySelector('h1').style.display='none';
+});
+</script>
+</body>
+</html>
